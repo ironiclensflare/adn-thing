@@ -17,6 +17,7 @@ AdnThing::Application.routes.draw do
   #   resources :products
   
   resources :global
+  resources :users
 
   # Example resource route with options:
   #   resources :products do

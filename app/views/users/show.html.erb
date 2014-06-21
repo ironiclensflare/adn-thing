@@ -1,0 +1,47 @@
+<div class='jumbotron'>
+	<div class='container'>
+		<h1><%= @user['username'] %></h1>
+		
+		<%
+		posts = @user['counts']['posts']
+		followers = @user['counts']['followers']
+		following = @user['counts']['following']
+		stars = @user['counts']['stars']
+		username = @user['username']
+		joinDate = time_ago_in_words(@user['created_at'])
+		
+		if @user['description']
+			description = @user['description']['html']
+		else
+			description = 'No description set'
+		end
+		%>
+		
+		<p><%= "#{number_to_human(posts)} posts | #{followers} followers | #{following} following | #{stars} stars" %></p>
+	</div>
+</div>
+
+<div class='container'>
+	<div class='row'>
+		<div class='col-sm-8'>
+			<% @posts.each do |p| %>
+			<% username = p['user']['username'] %>
+			<% avatar = p['user']['avatar_image']['url'] %>
+			<% post = p['html'].html_safe %>
+				<div class='media'>
+					<%= link_to(image_tag(avatar, size: '100'), user_path(username), { class: 'pull-left' }) %>
+					<div class='media-body'>
+						<h4 class='media-heading'><%= username %></h4>
+						<p><%= post %></p>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		
+		<div class='col-sm-4'>
+			<h3>About <%= username %>:</h3>
+			<%= description.html_safe %>
+			<p style='margin-top:1em'><strong>Joined:</strong> <%= joinDate %> ago</p>
+		</div>
+	</div>
+</div>
