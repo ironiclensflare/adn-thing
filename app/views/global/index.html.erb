@@ -7,12 +7,19 @@
 
 <div class='container'>
 	<div class='row'>
-		<div class='col-sm-12'>
-			<ul>
-				<% @stream.each do |s| %>
-					<li><%= s['text'] %></li>
-				<% end %>
-			</ul>
+		<div class='col-sm-12'>	
+			<% @stream.each do |s| %>
+			<% user = s['user']['username'] %>
+			<% avatar = s['user']['avatar_image']['url'] %>
+			<% post = s['html'].html_safe %>
+				<div class='media'>
+					<%= link_to(image_tag(avatar, size: '100'), user, { class: 'pull-left' }) %>
+					<div class='media-body'>
+						<h4 class='media-heading'><%= user %></h4>
+						<p><%= post %></p>
+					</div>
+				</div>
+			<% end %>
 		</div>
 	</div>
 </div>
