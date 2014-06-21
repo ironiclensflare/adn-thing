@@ -1,0 +1,18 @@
+<div class='jumbotron'>
+	<div class='container'>
+		<h1>Global Stream</h1>
+		<p>This lists the most recent posts on the ADN global stream.</p>
+	</div>
+</div>
+
+<div class='container'>
+	<div class='row'>
+		<div class='col-sm-12'>
+			<ul>
+				<% @stream.each do |s| %>
+					<li><%= s['text'] %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
