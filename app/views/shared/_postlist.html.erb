@@ -1,7 +1,9 @@
 <% posts.each do |p| %>
-<% username = p['user']['username'] %>
-<% avatar = p['user']['avatar_image']['url'] %>
-<% post = p['html'].html_safe %>
+<% 
+username = p['user']['username']
+avatar = p['user']['avatar_image']['url']
+p['html'] ? post = p['html'].html_safe : post = p['text']
+%>
 	<div class='media'>
 		<%= link_to(image_tag(avatar, size: '100'), user_path(username), { class: 'pull-left' }) %>
 		<div class='media-body'>
