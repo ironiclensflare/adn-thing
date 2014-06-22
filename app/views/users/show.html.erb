@@ -9,7 +9,7 @@
 		stars = @user['counts']['stars']
 		username = @user['username']
 		joinDate = time_ago_in_words(@user['created_at'])		
-		@user['description'] ? description = @user['description']['html'] : description = 'No description set'
+		description = @user['description'] ? @user['description']['html'] : 'No description set'
 		%>
 		
 		<p><%= "#{number_to_human(posts)} posts | #{followers} followers | #{following} following | #{stars} stars" %></p>
